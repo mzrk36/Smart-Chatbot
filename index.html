@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chatbot Test Page</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
   <style>
     body {
       margin: 0;
@@ -15,7 +16,6 @@
       overflow-x: hidden;
     }
 
-    /* Professional Sticky Header */
     .top-header {
       background: linear-gradient(to right, #1f1c2c, #928dab);
       color: white;
@@ -49,21 +49,11 @@
     }
 
     header.main h1 {
-      font-size: 3em;
+      font-size: 2.5em;
       color: #ffffff;
       opacity: 0;
       animation: fadeInText 2s ease forwards;
       animation-delay: 0.5s;
-    }
-
-    @keyframes fadeInDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeInText {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .main-image {
@@ -81,22 +71,12 @@
       transform: scale(1.08);
     }
 
-    @keyframes fadeInZoom {
-      0% { opacity: 0; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
     .content {
       padding: 40px 20px;
       max-width: 1000px;
       margin: auto;
       animation: fadeUp 2s ease forwards;
       opacity: 0;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     .features {
@@ -136,11 +116,6 @@
       animation-delay: 1.5s;
     }
 
-    @keyframes slideFadeIn {
-      from { transform: translateX(-50px); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -151,94 +126,7 @@
       animation-delay: 2s;
     }
 
-    @keyframes fadeInFooter {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Top Info Header -->
-  <div class="top-header">
-    <div class="container">
-      <div style="font-size: 1.1em; font-weight: 600;">
-        📢 Need Help? Ask <span style="color: #ffeb3b;">Muzamil's Smart Chatbot</span> Anytime.
-      </div>
-      <div style="font-size: 0.95em; margin-top: 5px;">
-        ⏰ 24/7 Support | 📞 <a href="mailto:muzamilzrk36@gmail.com">muzamilzrk36@gmail.com</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Header with Image -->
-  <header class="main">
-    <h1>🤖 Muzamil's Smart Chatbot</h1>
-    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEDVJk4i4PP3w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731289095529?e=1755129600&v=beta&t=eL4XREF12_VQvdZpe6s_wTPUS_LiF6MDUwVCKKuyWoE" alt="Chatbot Image" class="main-image">
-  </header>
-
-  <!-- Main Content -->
-  <section class="content">
-    <div class="features">
-      <h2>✨ Bot Features</h2>
-      <p>
-        This chatbot helps students with academic tasks such as checking lecture schedules, assignments, syllabus updates, and getting guidance. It’s smart, interactive, and built to support learning with fast and accurate responses.
-      </p>
-    </div>
-
-    <div class="typing-text" id="dynamicText"></div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    Made for chatbot testing purposes. ✨ Muhammed Muzamil ❤️ From SMIT.
-  </footer>
-
-  <!-- Typing Animation Script -->
-  <script>
-    const texts = [
-      "Helping you learn better 📘",
-      "Smart academic assistant 🎓",
-      "Knowledge at your fingertips 🧠",
-      "Fully responsive chatbot UI 💬"
-    ];
-
-    let count = 0;
-    let index = 0;
-    let currentText = '';
-    let letter = '';
-
-    (function type() {
-      if (count === texts.length) count = 0;
-      currentText = texts[count];
-      letter = currentText.slice(0, ++index);
-
-      document.getElementById('dynamicText').textContent = letter;
-      if (letter.length === currentText.length) {
-        count++;
-        index = 0;
-        setTimeout(type, 2000);
-      } else {
-        setTimeout(type, 100);
-      }
-    })();
-  </script>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Smart Chatbot Integration</title>
-  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #fff;
-    }
-
-    /* Floating Chat Button */
+    /* Chatbot Button */
     #custom-launcher {
       position: fixed;
       bottom: 24px;
@@ -253,7 +141,6 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
 
-    /* Close button */
     #close-chat {
       position: fixed;
       bottom: 90px;
@@ -271,27 +158,119 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
 
-    /* Customize df-messenger look */
     df-messenger {
       --df-messenger-bot-message: #2d2d44;
       --df-messenger-button-titlebar-color: #383854;
       --df-messenger-chat-background-color: #1e1e2f;
       --df-messenger-font-color: white;
       --df-messenger-user-message: #00c6ff;
-    }
-
-    /* Force df-messenger to stay hidden initially */
-    df-messenger {
       z-index: 1000;
       position: fixed;
       bottom: 24px;
       right: 24px;
+      display: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes fadeInText { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInZoom { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideFadeIn { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes fadeInFooter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .top-header .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      header.main h1 {
+        font-size: 2em;
+      }
+
+      .features p {
+        font-size: 1em;
+      }
+
+      .typing-text {
+        font-size: 1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-image {
+        width: 150px;
+      }
+
+      .features {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Dialogflow Messenger (auto-hidden) -->
+  <div class="top-header">
+    <div class="container">
+      <div style="font-size: 1.1em; font-weight: 600;">
+        📢 Need Help? Ask <span style="color: #ffeb3b;">Muzamil's Smart Chatbot</span> Anytime.
+      </div>
+      <div style="font-size: 0.95em; margin-top: 5px;">
+        ⏰ 24/7 Support | 📞 <a href="mailto:muzamilzrk36@gmail.com">muzamilzrk36@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="main">
+    <h1>🤖 Muzamil's Smart Chatbot</h1>
+    <img src="https://media.licdn.com/dms/image/v2/D4D03AQEDVJk4i4PP3w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1731289095529?e=1755129600&v=beta&t=eL4XREF12_VQvdZpe6s_wTPUS_LiF6MDUwVCKKuyWoE" alt="Chatbot Image" class="main-image">
+  </header>
+
+  <section class="content">
+    <div class="features">
+      <h2>✨ Bot Features</h2>
+      <p>
+        This chatbot helps students with academic tasks such as checking lecture schedules, assignments, syllabus updates, and getting guidance. It’s smart, interactive, and built to support learning with fast and accurate responses.
+      </p>
+    </div>
+    <div class="typing-text" id="dynamicText"></div>
+  </section>
+
+  <footer>
+    Made for chatbot testing purposes. ✨ Muhammed Muzamil ❤️ From SMIT.
+  </footer>
+
+  <!-- Typing Animation -->
+  <script>
+    const texts = [
+      "Helping you learn better 📘",
+      "Smart academic assistant 🎓",
+      "Knowledge at your fingertips 🧠",
+      "Fully responsive chatbot UI 💬"
+    ];
+    let count = 0;
+    let index = 0;
+    let currentText = '';
+    let letter = '';
+
+    (function type() {
+      if (count === texts.length) count = 0;
+      currentText = texts[count];
+      letter = currentText.slice(0, ++index);
+      document.getElementById('dynamicText').textContent = letter;
+      if (letter.length === currentText.length) {
+        count++;
+        index = 0;
+        setTimeout(type, 2000);
+      } else {
+        setTimeout(type, 100);
+      }
+    })();
+  </script>
+
+  <!-- Dialogflow Messenger Integration -->
   <df-messenger
     intent="WELCOME"
     chat-title="Smart Chatbot"
@@ -299,62 +278,25 @@
     language-code="en"
   ></df-messenger>
 
-  <!-- Custom Chat Launcher -->
-  <div id="custom-launcher" onclick="openBot()"></div>
-
-  <!-- Custom Close Button -->
-  <button id="close-chat" onclick="closeBot()">❌</button>
+  <div id="custom-launcher" onclick="toggleChat(true)"></div>
+  <button id="close-chat" onclick="toggleChat(false)">×</button>
 
   <script>
-    const customLauncher = document.getElementById('custom-launcher');
-    const closeChatBtn = document.getElementById('close-chat');
-    const dfMessenger = document.querySelector('df-messenger');
+    const launcher = document.getElementById('custom-launcher');
+    const chat = document.querySelector('df-messenger');
+    const closeBtn = document.getElementById('close-chat');
 
-    // Open chatbot
-    function openBot() {
-      const interval = setInterval(() => {
-        const shadow = dfMessenger.shadowRoot;
-        if (shadow) {
-          const launcher = shadow.querySelector('df-messenger-chat-open-icon');
-          const chatWrapper = shadow.querySelector('.df-chat-wrapper');
-          if (launcher && chatWrapper) {
-            launcher.style.display = 'none';
-            chatWrapper.style.display = 'block';
-            customLauncher.style.display = 'none';
-            closeChatBtn.style.display = 'block';
-            clearInterval(interval);
-          }
-        }
-      }, 100);
-    }
-
-    // Close chatbot
-    function closeBot() {
-      const shadow = dfMessenger.shadowRoot;
-      const chatWrapper = shadow.querySelector('.df-chat-wrapper');
-      if (chatWrapper) {
-        chatWrapper.style.display = 'none';
-        customLauncher.style.display = 'block';
-        closeChatBtn.style.display = 'none';
+    function toggleChat(open) {
+      if (open) {
+        chat.style.display = 'block';
+        closeBtn.style.display = 'block';
+        launcher.style.display = 'none';
+      } else {
+        chat.style.display = 'none';
+        closeBtn.style.display = 'none';
+        launcher.style.display = 'block';
       }
     }
-
-    // Hide default Dialogflow launcher on page load
-    window.addEventListener('load', () => {
-      const interval = setInterval(() => {
-        const shadow = dfMessenger.shadowRoot;
-        if (shadow) {
-          const launcher = shadow.querySelector('df-messenger-chat-open-icon');
-          if (launcher) {
-            launcher.style.display = 'none';
-            clearInterval(interval);
-          }
-        }
-      }, 100);
-    });
   </script>
-
-</body>
-</html>
 </body>
 </html>
